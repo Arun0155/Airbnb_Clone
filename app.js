@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const Listing = require("../majorproject/models/listing.js");
+// const Listing = require("../majorproject/models/listing.js");
+const Listing = require("./models/listing.js");
 const path =require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
@@ -33,7 +34,7 @@ app.get("/",(req,res) => {
 });
 
 // Index Route
-app.get("/listing", async (req,res) => {
+app.get("/listings", async (req,res) => {
     const allListings = await  Listing.find({});
     res.render("listings/index.ejs", {allListings});
 });
@@ -77,7 +78,7 @@ app.delete("/listings/:id", async (req,res) => {
     let { id } =req.params;
     let deletedListing = await Listing.findByIdAndDelete(id);
     console.log(deletedListing);
-    res.redirect("/listing");
+    res.redirect("/listings");
 });
 
 // app.get("/testListing", async (req, res) => {
