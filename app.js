@@ -25,7 +25,7 @@ app.set("views",path.join(__dirname, "views"));
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate);
-// app.use(express.static(path.join(__dirname,"/public")));
+app.use(express.static(path.join(__dirname,"/public")));
 app.set('views', path.join(__dirname, '/views'));
 
 app.get("/",(req,res) => {
@@ -94,6 +94,6 @@ app.delete("/listings/:id", async (req,res) => {
 //     res.send("successful testing");
 // });clr
 
-app.listen(8080., ()=> {
+app.listen(8080, ()=> {
     console.log("server is listening to port 8080");
 });
