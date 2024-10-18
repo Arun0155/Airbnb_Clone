@@ -3,7 +3,8 @@
     <div class="col-8 offset-2">
 
 <h3>Edit your Listing</h3>
-<form method="POST" action="/listings/<%= listing._id %>?_method=PUT">
+<form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate
+    class="needs-validation">
     <div class="mb-3">
         <label for="title" class="form-lable">Title</label>
         <input
@@ -11,14 +12,19 @@
             value="<%= listing.title %>"
             type="text"
             class="form-control"
+            required
         />
+        <div class="valid-feedback">Title looks good!</div>
     </div>
+    
     <div class="mb-3">
         <label for="description" class="form-lable">Description</label>
-        <textarea name="listing[description]"class="form-control">
+        <textarea name="listing[description]"class="form-control" required>
             <%= listing.description %>
-        </textarea>
+            </textarea>
+            <div class="invalid-feedback">Please  enter a short description</div>
     </div>
+    
     <div class="mb-3">
         <label for="image" class="form-lable">Image</label>
         <input
@@ -26,7 +32,9 @@
             value="<%= listing.image %>"
             type="text"
             class="form-control"
+            required
         />
+        <div class="invalid-feedback">Please  enter a valid Link</div>
     </div>
 
     <div class="row">
@@ -37,8 +45,11 @@
             value="<%= listing.price %>"
             type="number"
             class="form-control"
+            required
         />
+        <div class="invalid-feedback">Price should be valid</div>
     </div>
+    
     <div class="mb-3 col-md-8">
         <label for="country" class="form-lable">Country</label>
         <input
@@ -46,7 +57,9 @@
             value="<%= listing.country %>"
             type="text"
             class="form-control"
+            required
         />
+        <div class="invalid-feedback">Country name should be valid</div>
     </div>
 </div>
 
@@ -57,7 +70,9 @@
             value="<%= listing.location %>"
             type="text"
             class="form-control"
+            required
         />
+        <div class="invalid-feedback">Location should be valid</div>
     </div>
     
     <button class="btn btn-dark edit-btn mt-3">Save</button>
