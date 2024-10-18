@@ -12,7 +12,7 @@ const listingSchema = new Schema({
         type: String,
         default:
             "https://unsplash.com/photos/a-table-with-a-plate-of-cake-and-a-cup-of-coffee-QkkSPcVUDi0",
-        set: (v) => 
+        set: (v) =>
             v === ""
                 ? "https://unsplash.com/photos/a-table-with-a-plate-of-cake-and-a-cup-of-coffee-QkkSPcVUDi0"
                 : v,
