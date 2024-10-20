@@ -73,8 +73,15 @@ router.put(
     validateListing,
     wrapAsync( async (req,res) => {
     let { id } = req.params;
+    let listing = await Listing.findById(id);
+    if(!listing.owner.equals(res.locals.currUser._id)) {
+        req.flash("error", "You don't have permission to edit");
+        return res.redirect(`/listings/${id}`);
+    }
+
+
     await Listing.findByIdAndUpdate (id, {...req.body.listing});
-    req.flash("success", "Listing Updated");
+    req.flash("success", "Listing Updated!");
     res.redirect(`/listings/${id}`);
 }));
 
