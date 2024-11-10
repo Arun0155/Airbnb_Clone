@@ -9,13 +9,8 @@ const listingSchema = new Schema({
     },
     description: String,
     image: {
-        type: String,
-        default:
-            "https://unsplash.com/photos/a-table-with-a-plate-of-cake-and-a-cup-of-coffee-QkkSPcVUDi0",
-        set: (v) =>
-            v === ""
-                ? "https://unsplash.com/photos/a-table-with-a-plate-of-cake-and-a-cup-of-coffee-QkkSPcVUDi0"
-                : v,
+        url: String,
+        filename: String,
     },
     price: Number,
     location: String,
@@ -29,6 +24,17 @@ const listingSchema = new Schema({
     owner: {
         type: Schema.Types.ObjectId,
         ref: "User",
+    },
+    geometry: {
+        type: {
+            type: String, // Don't do `{ location: { type: String } }`
+            enum: ['Point'], // 'location.type' must be 'Point'
+            required: true,
+        },
+        coordinates: {
+            type: [Number],
+            required: true,
+        },
     },
 });
 
